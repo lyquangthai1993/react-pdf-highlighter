@@ -69,12 +69,13 @@ export function App() {
 
   const scrollViewerTo = useRef((highlight: IHighlight) => {});
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies(a): <inside getHighlightById is using array highlights>
   const scrollToHighlightFromHash = useCallback(() => {
     const highlight = getHighlightById(parseIdFromHash());
     if (highlight) {
       scrollViewerTo.current(highlight);
     }
-  }, []);
+  }, [highlights]);
 
   useEffect(() => {
     window.addEventListener("hashchange", scrollToHighlightFromHash, false);

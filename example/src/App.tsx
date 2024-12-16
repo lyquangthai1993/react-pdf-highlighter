@@ -74,7 +74,7 @@ export function App() {
     if (highlight) {
       scrollViewerTo.current(highlight);
     }
-  }, []);
+  }, [highlights]);
 
   useEffect(() => {
     window.addEventListener("hashchange", scrollToHighlightFromHash, false);

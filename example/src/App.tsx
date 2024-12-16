@@ -69,9 +69,8 @@ export function App() {
 
   const scrollViewerTo = useRef((highlight: IHighlight) => {});
 
-    // biome-ignore lint/correctness/useExhaustiveDependencies(a): <inside getHighlightById is using array highlights>
   const scrollToHighlightFromHash = useCallback(() => {
-    const highlight = getHighlightById(parseIdFromHash());
+    const highlight = getHighlightById(parseIdFromHash(), highlights);
     if (highlight) {
       scrollViewerTo.current(highlight);
     }
@@ -88,7 +87,7 @@ export function App() {
     };
   }, [scrollToHighlightFromHash]);
 
-  const getHighlightById = (id: string) => {
+  const getHighlightById = (id: string, highlights: Array<IHighlight>) => {
     return highlights.find((highlight) => highlight.id === id);
   };
 
